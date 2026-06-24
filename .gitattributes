@@ -1,0 +1,38 @@
+# .gitattributes
+# Override GitHub Linguist behavior for vendored files, documentation, and language overrides
+
+# ==========================================
+# 1. UN-VENDOR FILES / FOLDERS
+# ==========================================
+# By default, Linguist ignores folders like 'vendor/', 'node_modules/', etc. 
+# Force Linguist to count and display them in the language statistics:
+
+my-custom-vendor/*       linguist-vendored=false
+assets/js/libs/*.js      linguist-vendored=false
+third_party/core/        linguist-vendored=false
+
+# ==========================================
+# 2. FORCE VENDORING (HIDE FROM STATS)
+# ==========================================
+# If you have custom third-party code or generated files inflating your language stats:
+
+src/generated/**/*.js    linguist-vendored
+public/assets/compiled/  linguist-vendored
+
+# ==========================================
+# 3. LANGUAGE DETECTION OVERRIDES
+# ==========================================
+# Force Linguist to detect specific extensions as a chosen language 
+# (Great for custom extensions or ambiguous file types like .h or .pl)
+
+*.inc                    linguist-language=PHP
+*.h                      linguist-language=C++
+*.data                   linguist-language=JSON
+
+# ==========================================
+# 4. DOCUMENTATION & GENERATED CODE
+# ==========================================
+# Mark files as documentation or generated so they don't skew code percentages:
+
+docs/**/*.md             linguist-documentation
+src/protobuf/*.pb.go     linguist-generated
